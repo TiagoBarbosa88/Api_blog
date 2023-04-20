@@ -1,0 +1,29 @@
+.container_body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+
+}
+
+.container_title{
+  background-color: azure;
+  border: 1px solid #292929;
+  box-shadow: 1px  1px 12px #595959;
+  border-radius: 5px;
+  width: 98%;
+}
+.container_title > h1 {
+  margin-left: 10px;
+}
+
+.left {
+  width: 70%;
+  justify-content: flex-start;
+
+}
+
+.right {
+  width: 30%;
+  justify-content: end;
+}

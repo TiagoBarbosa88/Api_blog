@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="container_body">
+    <div class="container_card" *ngFor="let anime of animes">
+      <div class="container_content" >
+        <div class="card_title">
+          <h4> {{ anime.title }} </h4>
+        </div>
+        <div class="card_img">
+          <img src="{{ anime.images.webp.image_url }}" alt="">
+        </div>
+        <div class="card_button">
+          <button class="btn" type="submit">
+            Detalhes
+          </button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
