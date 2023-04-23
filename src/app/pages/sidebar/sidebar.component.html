@@ -2,16 +2,20 @@
   <div class="container_body">
     <div class="container_card" *ngFor="let recomend of recomends">
       <div class="card_img">
-        <img src="{{ recomend.images.webp.image_url }}" alt="">
+        <img src="{{ recomend.images.webp.large_image_url
+        }}" alt="">
       </div>
       <div class="card_title">
         <h4>{{ recomend.title }}</h4>
+        <div class="card_p">
+          <p><strong>Status:</strong> {{ recomend.status }}</p>
+        </div>
         <div class="card_options">
           <span>
-            <p>Rank: {{recomend.rank}}</p>
+            <p><strong>Rank:</strong> {{recomend.rank}}</p>
           </span>
           <span>
-            <p>Nota: {{recomend.score}}</p>
+            <p><strong>Nota:</strong> {{recomend.score}}</p>
           </span>
         </div>
       </div>
