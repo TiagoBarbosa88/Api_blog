@@ -15,6 +15,13 @@
   margin-bottom: 15px;
   overflow: hidden;
   color: aliceblue;
+
+}
+
+.container_card:hover {
+  box-shadow: 3px 3px 5px  white;
+  transition: .5s;
+  background-color: #4a8ca8 ;
 }
 
 .container_content {
@@ -36,7 +43,7 @@
 }
 
 .card_button {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .container_card .btn {
@@ -48,4 +55,37 @@
   border-radius: 5px;
   cursor: pointer;
   z-index: 1;
+}
+
+.container_card .btn:hover {
+  background-color: brown;
+  color: aliceblue;
+
+}
+
+
+/* Estilos para telas menores */
+@media only screen and (max-width: 990px) {
+  .container_body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .container_card {
+    display: flex;
+    max-width: 30%;
+  }
+}
+
+/* Estilos para telas menores */
+@media only screen and (max-width: 680px) {
+  .container_body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .container_card {
+    display: flex;
+    max-width: 45%;
+  }
 }

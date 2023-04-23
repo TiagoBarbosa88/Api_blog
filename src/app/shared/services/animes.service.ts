@@ -10,7 +10,9 @@ import { Post } from '../models/post';
 export class AnimesService {
   private baseApi = 'https://api.jikan.moe/v4/anime';
 
-  private recomends = 'https://api.jikan.moe/v4/recommendations/anime';
+ private recomends = 'https://api.jikan.moe/v4/anime?q=naruto&limit=10';
+ //private recomends = 'https://api.jikan.moe/v4/anime?q=recommendations&limit=10';
+
 
 
   constructor(private http: HttpClient) { }

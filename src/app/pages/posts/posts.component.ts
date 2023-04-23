@@ -26,8 +26,8 @@ export class PostsComponent implements OnInit {
       } else {
         console.log('Não foi possível encontrar a chave "data" na resposta da API.');
       }
-      console.log(data);
-      console.log(this.animes);
+   /*    console.log(data);
+      console.log(this.animes); */
     })
 
 

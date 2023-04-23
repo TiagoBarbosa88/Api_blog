@@ -1,0 +1,93 @@
+.card_anime {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: beige;
+}
+
+.card_title {
+  margin-bottom: 10px;
+  background-color: aliceblue;
+  width: 100%;
+  color: black;
+  text-align: center;
+  box-shadow: 2px 2px 2px rgb(80, 79, 79);
+  border-radius: 5px;
+}
+
+.card_image {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.card_image > img {
+  width: 100%;
+}
+
+.generos {
+  display: flex;
+  margin-bottom: 10px;
+
+
+}
+
+.generos > span {
+  margin-right: 10px;
+  background-color: aliceblue;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.card_description {
+  font-size: 20px;
+  width: 80%;
+  padding: 10px;
+}
+
+
+/* Estilos para telas menores */
+@media only screen and (max-width: 600px) {
+  .card_anime {
+    margin: 10px;
+  }
+
+  .generos {
+    flex-wrap: wrap;
+  }
+
+  .generos > span {
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+
+  .card_description {
+    font-size: 16px;
+    width: 90%;
+    padding: 5px;
+  }
+}
+
+/* Estilos para telas maiores */
+@media only screen and (min-width: 601px) {
+  .card_anime {
+    margin: 20px;
+  }
+
+  .generos {
+    flex-wrap: nowrap;
+  }
+
+  .generos > span {
+    margin-right: 10px;
+    margin-bottom: 0;
+  }
+
+  .card_description {
+    font-size: 20px;
+    width: 80%;
+    padding: 10px;
+  }
+}

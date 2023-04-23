@@ -1,16 +1,20 @@
 <div class="container">
-   <div class="container_body">
-    <div class="container_card" *ngFor="let anime of animes">
+  <div class="container_body">
+    <div class="container_card" *ngFor="let recomend of recomends">
       <div class="card_img">
-        <img src="{{ anime.images.webp.image_url }}" alt="">
+        <img src="{{ recomend.images.webp.image_url }}" alt="">
       </div>
       <div class="card_title">
-        <p>One Piece completa 25 anos neste ano</p>
+        <h4>{{ recomend.title }}</h4>
         <div class="card_options">
-        <span><p>25 Likes</p></span>
-        <span><p>50 Views</p></span>
+          <span>
+            <p>Rank: {{recomend.rank}}</p>
+          </span>
+          <span>
+            <p>Nota: {{recomend.score}}</p>
+          </span>
+        </div>
       </div>
     </div>
+    <!-- <hr class="card_space"> -->
   </div>
-  <hr class="card_space">
-</div>

@@ -9,17 +9,16 @@ import { AnimesService } from '../../shared/services/animes.service'
 
 
 export class SidebarComponent implements OnInit {
-  animes: any
+  recomends: any
 
 
   constructor(private animesService: AnimesService) { }
 
   ngOnInit(): void {
-
     this.animesService.getRecomends().subscribe((data) => {
       if (data && data.data) {
-        this.animes = data.data;
-        console.log(this.animes)
+        this.recomends = data.data;
+        console.log(this.recomends)
       } else {
         console.log('Não achou')
       }
