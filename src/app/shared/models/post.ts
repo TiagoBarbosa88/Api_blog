@@ -1,6 +1,6 @@
 export interface Post {
-  id?: number,
+  mal_id?: number,
   title: string,
-  img: string,
+  images: string,
   description: string
 }

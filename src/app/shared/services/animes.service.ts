@@ -25,7 +25,8 @@ export class AnimesService {
     return this.http.get<any>(this.recomends)
   }
 
-  getAnimesById(id: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.baseApi}/${id}`)
+  getAnimesById(id: string | null): Observable<any> {
+    const url = `${this.baseApi}/${id}`;
+    return this.http.get(url)
   }
 }

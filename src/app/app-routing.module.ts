@@ -5,7 +5,7 @@ import { AnimeDetailsComponent } from './pages/anime-details/anime-details.compo
 
 
 const routes: Routes = [
-  { path: 'details', component: AnimeDetailsComponent },
+  { path: 'details/:id', component: AnimeDetailsComponent },
   { path: '', component: HomeComponent }
 
 ];

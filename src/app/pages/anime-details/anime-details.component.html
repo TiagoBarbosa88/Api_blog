@@ -1,18 +1,22 @@
 <div class="container">
-  <div class="card_anime">
+  <div class="card_anime" >
     <div class="card_title">
-      <h1>Naruto</h1>
+      <h1>{{ anime.title }}</h1>
     </div>
     <div class="card_image">
-        <img src="https://universoestendido.com.br/wp-content/uploads/2017/12/naruto-mae_04.jpg" alt="">
+      <img src="{{ anime.images.webp.image_url }}" alt="">
     </div>
     <div class="generos">
-      <span><p>Luta</p></span>
-      <span><p>Comedia</p></span>
-      <span><p>Luta</p></span>
+      <ul>
+        <li *ngFor="let genre of anime.genres">
+          {{ genre.name }}
+        </li>
+      </ul>
+
     </div>
     <div class="card_description">
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita perferendis, dolorem corrupti numquam explicabo praesentium. Deleniti aperiam numquam quia consequuntur, voluptatibus sint, tempora hic exercitationem alias ex vel sunt earum?
+      <p>
+      {{ anime.synopsis }}
       </p>
     </div>
   </div>

@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
     this.animesService.getRecomends().subscribe((data) => {
       if (data && data.data) {
         this.recomends = data.data;
-        console.log(this.recomends)
+        //console.log(this.recomends)
       } else {
         console.log('Não achou')
       }
