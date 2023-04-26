@@ -48,3 +48,24 @@
 
 }
 
+
+@media only screen and (max-width: 600px)
+{
+  .header {
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+  }
+
+  h1 {
+    font-size: 45px;
+  }
+
+  .header_list li {
+    padding: 7px;
+    font-size: 20px;
+
+  }
+
+
+}

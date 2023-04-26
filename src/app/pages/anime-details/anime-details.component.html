@@ -6,8 +6,8 @@
     <div class="card_image">
       <img src="{{ anime.images.webp.image_url }}" alt="">
     </div>
-    <div class="generos">
-      <ul>
+    <div>
+      <ul class="generos">
         <li *ngFor="let genre of anime.genres">
           {{ genre.name }}
         </li>

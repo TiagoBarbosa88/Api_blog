@@ -33,7 +33,7 @@
 
 }
 
-.generos > span {
+.generos > li {
   margin-right: 10px;
   background-color: aliceblue;
   color: black;

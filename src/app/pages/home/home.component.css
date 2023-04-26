@@ -36,7 +36,16 @@
 
   .left, .right {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+
+  .container_body {
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    margin-left: 10px;
   }
 }
 
