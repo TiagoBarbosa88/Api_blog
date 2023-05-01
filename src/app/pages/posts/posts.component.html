@@ -6,7 +6,7 @@
           <h4> {{ anime.title }} </h4>
         </div>
         <div class="card_img">
-          <img src="{{ anime.images.webp.image_url }}" title="">
+          <img src="{{ anime.images.webp.image_url }}" title="{{ anime.title }}">
         </div>
         <div class="card_button">
           <button class="btn" (click)="getPostById(anime.mal_id)">
