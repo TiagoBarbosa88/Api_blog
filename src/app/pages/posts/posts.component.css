@@ -49,7 +49,8 @@
 .container_card .btn {
   position: absolute;
   bottom: 0;
-  background-color: aliceblue;
+  color: aliceblue;
+  background-color: brown;
   width: 90%;
   height: 25px;
   border-radius: 5px;
@@ -58,8 +59,8 @@
 }
 
 .container_card .btn:hover {
-  background-color: brown;
-  color: aliceblue;
+  background-color: aliceblue;
+  color: black;
 
 }
 
