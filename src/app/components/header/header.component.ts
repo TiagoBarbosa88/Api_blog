@@ -1,7 +1,7 @@
+import { BehaviorSubject, Subject, first } from 'rxjs';
 import { Component, OnInit, inject } from '@angular/core';
 
 import { AnimesService } from 'src/app/shared/services/animes.service';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +17,15 @@ import { first } from 'rxjs';
         <div class="flex gap-2">
           <h3 class="text-primary">Categorias</h3>
           <p-dropdown
+            (onChange)="getSelectedCategory()"
             [options]="genres$"
             [(ngModel)]="genresSelected"
             optionLabel="name"
           ></p-dropdown>
+          <p-button
+            (onClick)="listSelectedCategory()"
+            icon="pi pi-search"
+          ></p-button>
         </div>
       </div>
     </p-toolbar>
@@ -29,16 +34,26 @@ import { first } from 'rxjs';
 export class HeaderComponent implements OnInit {
   private animesService = inject(AnimesService);
 
-  genresSelected!: any;
+  public genresSelected!: any;
 
-  genres$!: any[];
+  public genres$!: any[];
 
-  ngOnInit() {
-    this.animesService.getAnimesByGenreSubscription();
+  public ngOnInit(): void {
+    this.animesService.getAnimesByGenresSubscription();
 
     this.animesService.genres$.subscribe((data) => {
-      console.log(data);
       this.genres$ = data;
     });
+  }
+
+  public getSelectedCategory(): number {
+    const selected = this.genresSelected.mal_id;
+    this.animesService.getSelectedCategory(selected);
+    return selected;
+  }
+
+  public listSelectedCategory(): void {
+    const id = this.getSelectedCategory();
+    this.animesService.getAnimesByGenre(id).pipe(first()).subscribe();
   }
 }

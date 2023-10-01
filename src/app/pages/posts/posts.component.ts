@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { AnimesService } from '../../shared/services/animes.service';
 import { Router } from '@angular/router';
@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  animes: any;
-  id!: string | null;
-
-  constructor(private animesService: AnimesService, private router: Router) {}
+  private animesService = inject(AnimesService);
+  private router = inject(Router);
+  public animes: any;
+  public id!: string | null;
 
   ngOnInit(): void {
     this.getPost();
   }
 
-  getPost() {
+  getPost(): void {
     this.animesService.getAllAnimes().subscribe((data) => {
       if (data && data.data) {
         this.animes = data.data;
@@ -28,5 +28,11 @@ export class PostsComponent implements OnInit {
 
   getPostById(id: null | string) {
     this.router.navigate([`details/${id}`]);
+  }
+
+  public getByGenres() {
+    const id = this.animesService.genresSelected$.subscribe((data) => {
+      this.animes = data;
+    });
   }
 }

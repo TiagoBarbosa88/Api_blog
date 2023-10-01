@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, first, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, first, map } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +14,10 @@ export class AnimesService {
   private genresObservable = new BehaviorSubject<any[]>([]);
   public readonly genres$ = this.genresObservable.asObservable();
 
+  private genresSelectedObservable = new Subject();
+  public readonly genresSelected$ =
+    this.genresSelectedObservable.asObservable();
+
   public getAllAnimes(): Observable<any> {
     return this.http.get<any>(`${this.baseApi}/anime`);
   }
@@ -26,12 +30,12 @@ export class AnimesService {
     return this.http.get(`${this.baseApi}/anime/${id}`);
   }
 
-  public getAnimesByGenre(): Observable<{ data: any[] }> {
+  public getAllGenresAnimes(): Observable<{ data: any[] }> {
     return this.http.get<{ data: any[] }>(`${this.baseApi}/genres/anime`);
   }
 
-  public getAnimesByGenreSubscription(): void {
-    this.getAnimesByGenre()
+  public getAnimesByGenresSubscription(): void {
+    this.getAllGenresAnimes()
       .pipe(
         first(),
         map((data) => {
@@ -41,5 +45,14 @@ export class AnimesService {
       .subscribe((data) => {
         this.genresObservable.next(data);
       });
+  }
+
+  public getAnimesByGenre(categoryId: number) {
+    return this.http.get(`${this.baseApi}/anime/${categoryId}`);
+  }
+
+  public getSelectedCategory(genreId: number): void {
+    this.genresSelectedObservable.next(genreId);
+    console.log(genreId);
   }
 }
