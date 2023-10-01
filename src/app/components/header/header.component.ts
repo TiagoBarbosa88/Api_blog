@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
-interface City {
-  name: string;
-  code: string;
-}
+import { AnimesService } from 'src/app/shared/services/animes.service';
+import { first } from 'rxjs';
+
 @Component({
   selector: 'app-header',
   template: `
@@ -18,8 +17,8 @@ interface City {
         <div class="flex gap-2">
           <h3 class="text-primary">Categorias</h3>
           <p-dropdown
-            [options]="cities"
-            [(ngModel)]="selectedCity"
+            [options]="genres$"
+            [(ngModel)]="genresSelected"
             optionLabel="name"
           ></p-dropdown>
         </div>
@@ -28,17 +27,18 @@ interface City {
   `,
 })
 export class HeaderComponent implements OnInit {
-  cities: City[] | undefined;
+  private animesService = inject(AnimesService);
 
-  selectedCity: City | undefined;
+  genresSelected!: any;
+
+  genres$!: any[];
 
   ngOnInit() {
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' },
-    ];
+    this.animesService.getAnimesByGenreSubscription();
+
+    this.animesService.genres$.subscribe((data) => {
+      console.log(data);
+      this.genres$ = data;
+    });
   }
 }

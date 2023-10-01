@@ -1,27 +1,45 @@
+import { BehaviorSubject, Observable, first, map } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnimesService {
-  private baseApi = 'https://api.jikan.moe/v4/anime';
+  private baseApi = 'https://api.jikan.moe/v4';
 
-  private recomends = 'https://api.jikan.moe/v4/anime?q=naruto&limit=10';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  private genresObservable = new BehaviorSubject<any[]>([]);
+  public readonly genres$ = this.genresObservable.asObservable();
 
-  getAllAnimes(): Observable<any> {
-    return this.http.get<any>(this.baseApi);
+  public getAllAnimes(): Observable<any> {
+    return this.http.get<any>(`${this.baseApi}/anime`);
   }
 
-  getRecomends(): Observable<any> {
-    return this.http.get<any>(this.recomends);
+  public getRecomends(): Observable<any> {
+    return this.http.get<any>(`${this.baseApi}/anime?q=one-piece&limit=4`);
   }
 
-  getAnimesById(id: string | null): Observable<any> {
-    const url = `${this.baseApi}/${id}`;
-    return this.http.get(url);
+  public getAnimesById(id: string | null): Observable<any> {
+    return this.http.get(`${this.baseApi}/anime/${id}`);
+  }
+
+  public getAnimesByGenre(): Observable<{ data: any[] }> {
+    return this.http.get<{ data: any[] }>(`${this.baseApi}/genres/anime`);
+  }
+
+  public getAnimesByGenreSubscription(): void {
+    this.getAnimesByGenre()
+      .pipe(
+        first(),
+        map((data) => {
+          return data.data;
+        })
+      )
+      .subscribe((data) => {
+        this.genresObservable.next(data);
+      });
   }
 }
