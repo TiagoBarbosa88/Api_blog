@@ -1,42 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { AnimesService } from '../../shared/services/animes.service'
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
 
+import { AnimesService } from '../../shared/services/animes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
 })
-
-
 export class PostsComponent implements OnInit {
-
-  animes: any;
-  id!: string | null;
-
-
-  constructor(private animesService: AnimesService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  private animesService = inject(AnimesService);
+  private router = inject(Router);
+  public animes: any;
+  public id!: string | null;
 
   ngOnInit(): void {
-    this.getPost()
- 
+    this.getPost();
   }
 
-    getPost(){
-      this.animesService.getAllAnimes().subscribe((data) => {
-        if (data && data.data) {
-          this.animes = data.data;
-        }
-      })
-    }
+  getPost(): void {
+    this.animesService.getAllAnimes().subscribe((data) => {
+      if (data && data.data) {
+        this.animes = data.data;
+      }
+    });
+  }
 
+  getPostById(id: null | string) {
+    this.router.navigate([`details/${id}`]);
+  }
 
-    getPostById(id: null | string){
-      this.router.navigate([`details/${id}`])
-    }
+  public getByGenres() {
+    const id = this.animesService.genresSelected$.subscribe((data) => {
+      this.animes = data;
+    });
+  }
 }
-
